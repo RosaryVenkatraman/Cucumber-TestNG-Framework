@@ -1,0 +1,242 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>CucumberExtent</groupId>
+  <artifactId>CucumberExtent</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>CucumberExtent</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.14.3</version>
+			<!-- <scope>compile</scope> -->
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>3.8.1</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>4.0.0</version>
+</dependency>
+		
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>1.2.5</version>
+			<!-- <scope>test</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-jvm-deps</artifactId>
+			<version>1.0.5</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>1.2.5</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>cucumber-reporting</artifactId>
+			<version>3.8.0</version>
+		</dependency>
+		
+		
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-java</artifactId>
+    <version>5.5.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-jvm-deps -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-jvm-deps</artifactId>
+    <version>1.0.6</version>
+    <scope>provided</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-testng</artifactId>
+    <version>5.5.0</version>
+</dependency>
+
+		
+		<!-- https://mvnrepository.com/artifact/io.cucumber/gherkin -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>gherkin</artifactId>
+    <version>11.0.0</version>
+</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/io.cucumber/messages -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>messages</artifactId>
+    <version>10.0.3</version>
+</dependency>
+
+
+<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.4</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>3.15.0</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>FreshBenies</projectName>  <!-- Replace with project name -->
+							<outputDirectory>${project.build.directory}/cucumber-reports/advanced-reports</outputDirectory>
+							<cucumberOutput>${project.build.directory}/cucumber-reports/CucumberTestReport.json</cucumberOutput>
+							<buildNumber>1</buildNumber>
+							<parallelTesting>false</parallelTesting>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+ <groupId>ch.fortysix</groupId>
+ <artifactId>maven-postman-plugin</artifactId>
+ <executions>
+ <execution>
+ 
+ <id>send a mail</id>
+ <phase>test</phase>
+ <goals>
+ <goal>send-mail</goal>
+ </goals>
+ <inherited>true</inherited>
+ 
+ <configuration>
+ <!-- From Email address -->
+ <from>fanpageuser01@gmail.com</from>
+ 
+ <!--  Email subject -->
+ <subject>Test Automation Report</subject>
+ 
+ <!-- Fail the build if the mail doesnt reach -->
+ <failonerror>true</failonerror>
+ 
+ <!-- host -->
+ <mailhost>smtp.gmail.com</mailhost>
+ <!-- port of the host -->
+ <mailport>465</mailport>
+ <mailssl>true</mailssl>
+ <mailAltConfig>true</mailAltConfig>
+ 
+ <!-- Email Authentication(USername and Password) -->
+ <mailuser>fanpageuser01@gmail.com</mailuser>
+ <mailpassword>Hello@9962</mailpassword>
+ 
+ <receivers>
+ <!-- To Email address -->
+ <receiver>rosary.venkatraman@impigertech.com</receiver>
+ </receivers>
+ 
+ <fileSets>
+ <fileSet>
+ <!-- Report directory Path -->
+ <directory>${basedir}/target/cucumber-reports/cucumber-pretty</directory>
+ <includes>
+ <!-- Report file name -->
+ <include>/**/*.html</include>
+ </includes>
+ <!-- Use Regular Expressions like **/*.html if you want all the html files to send-->
+ </fileSet>
+ </fileSets> 
+ 
+ </configuration>
+ </execution>
+ </executions>
+ </plugin>
+		</plugins>
+	</build>
+</project>
+  
